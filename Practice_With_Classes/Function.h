@@ -11,10 +11,14 @@
 
 #include <stdio.h>
 #include "Point.h"
-
+/*
+ This class is for a generic function. Eventually it is hoped that a Polynomial, Trig function and other classes will inherit from this one.
+ 
+ */
 class Function{
     
-    virtual float evaluate(Point Pt) =0;
+    virtual float evaluate(Point Pt) =0; //Purely virtual function, making this class abstract so it cannot
+                                         // be instantiated.
     virtual void print() = 0;
     
 };

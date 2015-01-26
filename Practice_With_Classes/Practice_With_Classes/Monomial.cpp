@@ -8,6 +8,8 @@
 
 #include "Monomial.h" // Included the header file for this class
 #include <iostream> // iostream needed for print functionality
+#include <stdlib.h>
+#include <string>
 #include "math.h"  // Math needed for evaluation
 
 using namespace std;
@@ -23,7 +25,7 @@ Monomial::Monomial(){ // default constructor
 
 }
 
-Monomial::Monomial(int a, int b, int c){ // overloaded constructor for monomial.
+Monomial::Monomial(int a, int b, int c){ // overloaded constructor for monomial, if no coefficient is specified.
     setcoeff(1);
     setxpower(a);
     setypower(b);
@@ -31,19 +33,33 @@ Monomial::Monomial(int a, int b, int c){ // overloaded constructor for monomial.
     
     
 }
-Monomial::Monomial(float f, int a, int b, int c){
+Monomial::Monomial(float f, int a, int b, int c){ //Constructor for leading coeff not equal to one.
     setcoeff(f);
     setxpower(a);
     setypower(b);
     setzpower(c);
 }
 
+
+Monomial::Monomial(string s){ // forced input must be of the form "ax^by^cz^d"
+    
+    long int xloc = s.find("x"); //finds locations of x,y, and z in the string s.
+    long int yloc = s.find("y");
+    long int zloc = s.find("z");
+    
+    setcoeff(stoi(s.substr(0,xloc)));
+    setxpower(stoi(s.substr(xloc + 2, yloc)));
+    setypower(stoi(s.substr(yloc + 2, zloc)));
+    setzpower(stoi(s.substr(zloc + 2, s.length())));
+
+    
+}
 /*
  Need to make a constructor that takes in a string. For Polynomial class development.
  */
 
 float Monomial::evaluate(Point p){ // evaluation self explanatory
-    return powf(p.getx(), xpower)*powf(p.gety(), ypower)*powf(p.getz(),zpower);
+    return coeff*powf(p.getx(), xpower)*powf(p.gety(), ypower)*powf(p.getz(),zpower);
     
 }
 
@@ -209,7 +225,8 @@ else if(coeff != 0){
                             cout << coeff << "z";
                         }
                         else if(zpower == 0){
-                            cout << 0 << endl;
+                           
+                            cout << coeff << endl;
                         }
                         else{
                             cout << coeff << "z^" << zpower;
@@ -265,6 +282,8 @@ else if(coeff != 0){
     }
 else{
     cout << 0;
+    
 }
+    //cout << endl;
 }
     

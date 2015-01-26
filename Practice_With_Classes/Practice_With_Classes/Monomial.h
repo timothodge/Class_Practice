@@ -12,6 +12,12 @@
 #include <stdio.h>
 #include "Point.h"
 #include "Function.h"
+#include <string>
+/*
+ The monomial class inherits from the function class. Forcing it to have a print method and evaluation method. 
+ 
+Monomial is allowed to be in three variables x,y,z and have a leading coefficient. Limits are that powers of variables must be integers and the leading coefficient is allowed to be float.
+ */
 class Monomial : Function{
 
     
@@ -24,6 +30,7 @@ public:
     Monomial();
     Monomial(int x, int y, int z);
     Monomial(float coeff, int x, int y, int z);
+    Monomial(std::string s);
     
     float getcoeff(){return coeff;};
     int getxpower(){return xpower;};

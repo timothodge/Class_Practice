@@ -13,6 +13,8 @@
 #include <string>
 #include "Monomial.h"
 #include "Point.h"
+#include <vector>//
+
 using namespace std;
 #endif /* defined(__Practice_With_Classes__Polynomial__) */
 
@@ -20,11 +22,12 @@ class Polynomial : Function{
     
     
 public:
+
+    std::vector<Monomial> V;
     int degree;
-    Polynomial();
     Polynomial(string s);
-    float Evaluate(Point P);
-    void Print();
+    float evaluate(Point P);
+    void print();
     int getdegree();
     
     

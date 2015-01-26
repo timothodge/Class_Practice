@@ -20,6 +20,7 @@
 
 #include <iostream>
 #include "Monomial.h"
+#include "Polynomial.h"
 #include "Point.h"
 using namespace std;
 
@@ -33,20 +34,32 @@ int main(int argc, const char * argv[]) {
     
     Point P = Point(1,1,1);
     
-    Monomial M = Monomial(1,1,1);
+    //Monomial M = Monomial(1,1,1);
     
     
    
-    M.print();
-    cout << M.degree() << endl;
+    //M.print();
+   // cout << M.degree() << endl;
     
-    cout << M.evaluate(P) << endl;
+    //cout << M.evaluate(P) << endl;
     
+    Monomial MP = Monomial("5x^2y^2z^2");
     
+    MP.print();
     
+    //cout << MP.coeff << endl;
+    //cout << MP.xpower << endl;
+   // cout << MP.ypower << endl;
+   // cout << MP.zpower << endl;
+    
+   // cout << MP.evaluate(P) << endl;
     
     //M.print();
+    Polynomial Poly = Polynomial("1x^2y^0z^0 + 1x^0y^2z^0 + 1x^0y^0z^2 + 1x^1y^1z^1");
+    cout << "hey" << endl;
     
+    Poly.print();
+    cout << "Poly.eval is " << Poly.evaluate(P) << endl;
     
     
     
