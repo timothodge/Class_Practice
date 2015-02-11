@@ -10,11 +10,14 @@
 #include "Monomial.h"
 #include <string>
 #include <iostream>
+#include <vector>//
 using namespace std;
+/*
+ Polynomial constructor given as a string of monomials.
+ */
 
 Polynomial::Polynomial(string s){
-    //cout << "Here " << endl;
-    //std::vector<Monomial> V; //Define a vector to hold monomials. Dynamically allocates better than array.
+    
     std::string delimiter = "+"; // Delimeter is a + for polynomials
     
     size_t pos = 0;
@@ -35,19 +38,36 @@ Polynomial::Polynomial(string s){
 //            c.print();
 //            
 //        }
-    
-    
+    //This sets the degree by running through all the monomials.
+    degree = 0;
+    for (auto c : V){ //auto will automatically determine the type of variable c is, in this case, Monomial
+        if (c.degree() > degree){
+            degree = c.degree();
+        }
+        else{
+            
+        }
+    }
 
 }
 
-void Polynomial::print(){
+Polynomial::Polynomial(std::vector<Monomial> U){//Constructor given a vector of monomials, used for diffx diffy, diffz.
+    V = U;
+    
+}
 
+void Polynomial::print(){
+    Point P = Point(1,1,1);
    int i = 1;
     for (auto c : V){ // print out tokens.
-       // cout << "c is " << endl;
         if (i == 1){
-            c.print();
-            i += i;
+            if (c.evaluate(P) != 0){
+                c.print();
+                i += i;
+            }
+        }
+        else if (c.evaluate(P) == 0){ // Way of determining if the monomial is the zero monomial.
+            
         }
         else{
             cout << " + ";
@@ -58,18 +78,56 @@ void Polynomial::print(){
        cout << endl;
 }
 
+int Polynomial::getdegree(){
+    return degree;
+}
+
 
 
 
 float Polynomial::evaluate(Point P){
     
-    float total = 0;
+    float total = 0; // run through each monomial adding them as we go along.
     for (auto c : V){
         total += c.evaluate(P);
     }
-        
-
-    
     
     return total;
+}
+
+
+
+Polynomial Polynomial::diffx(){
+    std::vector<Monomial> TempVec;
+    
+    for (auto c : V){
+        TempVec.push_back(c.diffx());
+        
+    }
+    
+    return TempVec;
+}
+
+
+Polynomial Polynomial::diffy(){
+    std::vector<Monomial> TempVec;
+    
+    for (auto c : V){
+        TempVec.push_back(c.diffy());
+        
+    }
+    
+    return TempVec;
+}
+
+
+Polynomial Polynomial::diffz(){
+    std::vector<Monomial> TempVec;
+    
+    for (auto c : V){
+        TempVec.push_back(c.diffz());
+        
+    }
+    
+    return TempVec;
 }

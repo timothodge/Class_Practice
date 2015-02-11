@@ -64,6 +64,7 @@ float Monomial::evaluate(Point p){ // evaluation self explanatory
 }
 
 
+
 void Monomial::print(){ // Print nasty but needed for ease of reading.
 if(coeff == 1){
         if( xpower == 1){
@@ -286,4 +287,53 @@ else{
 }
     //cout << endl;
 }
+
+/* In diffx, diffy,diffz, if the power to differentiate with is zero return the zero monomial.
+    Otherwise do a naive power rule and return the corresponding monomial. This makes use of the constructor specifying the coeffcient and power of the variables.
+ 
+ */
+
+
+Monomial Monomial::diffx(){
+    if (xpower == 0){
+        Monomial M = Monomial(0,0,0,0);
+        return M;
+    }
+    else{
+        float Tempcoeff = coeff*xpower;
+        xpower = xpower - 1;
+        Monomial M = Monomial(Tempcoeff,xpower,ypower,zpower);
+        return M;
+    }
     
+}
+
+Monomial Monomial::diffy(){
+    if (ypower == 0){
+        Monomial M = Monomial(0,0,0,0);
+        return M;
+    }
+    else{
+        float Tempcoeff = coeff*ypower;
+        ypower = ypower - 1;
+        Monomial M = Monomial(Tempcoeff,xpower,ypower,zpower);
+        return M;
+    }
+    
+}
+
+Monomial Monomial::diffz(){
+    if (zpower == 0){
+        Monomial M = Monomial(0,0,0,0);
+        return M;
+    }
+    else{
+        float Tempcoeff = coeff*zpower;
+        zpower = zpower - 1;
+        Monomial M = Monomial(Tempcoeff,xpower,ypower,zpower);
+        return M;
+    }
+    
+}
+
+

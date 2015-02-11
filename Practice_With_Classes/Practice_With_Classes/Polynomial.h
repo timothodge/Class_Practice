@@ -25,10 +25,15 @@ public:
 
     std::vector<Monomial> V;
     int degree;
-    Polynomial(string s);
+    Polynomial(string s); // standard constructor.
+    Polynomial(std::vector<Monomial> U); //Constructor used in differentiation
     float evaluate(Point P);
     void print();
     int getdegree();
+    
+    Polynomial diffx();
+    Polynomial diffy();
+    Polynomial diffz();
     
     
 };

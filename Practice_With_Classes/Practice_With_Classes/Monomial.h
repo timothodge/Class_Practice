@@ -19,14 +19,13 @@
 Monomial is allowed to be in three variables x,y,z and have a leading coefficient. Limits are that powers of variables must be integers and the leading coefficient is allowed to be float.
  */
 class Monomial : Function{
-
-    
-public:
     float coeff;
     int xpower;
     int ypower;
     int zpower;
     
+    
+public:
     Monomial();
     Monomial(int x, int y, int z);
     Monomial(float coeff, int x, int y, int z);
@@ -45,6 +44,11 @@ public:
     void print();
     float degree(){return xpower + ypower + zpower;};
     float evaluate(Point P);
+    
+    Monomial diffx();
+    Monomial diffy();
+    Monomial diffz();
+    
     
     
     

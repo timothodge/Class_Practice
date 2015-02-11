@@ -7,6 +7,8 @@
 //
 
 #include "Point.h"
+#include <iostream>
+using namespace std;
 /*
  The Point class is a point currently in 3-dimensional real space. Setx is already been defined in the header file. There are two constructors one is default other is overloaded.
  */
@@ -22,5 +24,10 @@ Point::Point(float a, float b, float c){ // Overloaded constructor to give in po
     setx(a);
     sety(b);
     setz(c);
+    
+}
+
+void Point::print(){
+    std::cout << "(" << getx() << "," << gety() << "," << getz() << ")";
     
 }

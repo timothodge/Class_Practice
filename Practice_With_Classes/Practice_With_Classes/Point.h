@@ -33,6 +33,8 @@ public:
     void sety(float a){y = a;};
     void setz(float a){z = a;};
     
+    void print();
+    
     
     
     
